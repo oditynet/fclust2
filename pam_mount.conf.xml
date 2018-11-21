@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE pam_mount SYSTEM "pam_mount.conf.xml.dtd">
+ 
+<pam_mount>
+    <debug enable="0" />
+    <logout wait="30000" hup="0" term="0" kill="0" /> 
+    <mkmountpoint enable="0" remove="false" />
+     
+    <cifsmount>mount.cifs //%(SERVER)/%(VOLUME) %(MNTPT) -o %(OPTIONS)</cifsmount>
+    <mntoptions allow="nosuid,nodev,loop,encryption,fsck,nonempty,allow_root,allow_other" />
+    <mntoptions deny="nouser_xattr " />
+    <volume
+        fstype="cifs"
+            server="fclust2.depo.local"
+	path="users/%(USER)"
+            mountpoint="/home/DEPO/%(USER)/users"
+	        uid="8000-2000000"
+            options="sec=ntlmv2,cruid=%(USERUID),uid=%(USERUID),gid=%(USERGID),vers=3.0,nobrl,username=%(USER),echo_interval=30,cache=none,sfu,mfsymlinks,uid=%(USERUID),forceuid,gid=%(USERGID),perm,file_mode=0700,dir_mode=0700" />
+    <volume
+        fstype="cifs"
+            server="europa.depo.local"
+    path="Users/%(USER)"
+            mountpoint="/home/DEPO/%(USER)/tmp"
+            uid="8000-2000000"
+            options="sec=ntlmv2,cruid=%(USERUID),uid=%(USERUID),gid=%(USERGID),vers=3.0,nobrl,username=%(USER),echo_interval=30,cache=none,sfu,mfsymlinks" />
+</pam_mount>
