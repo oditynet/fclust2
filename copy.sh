@@ -1,11 +1,12 @@
 #!/bin/bash
-
-
+if [[ "$(dpkg -l|grep ' pv '|wc -l)" == "0" ]];then
+    echo " Are you installed a: apt-get install parallel rsync pv libpam-mount"
+    exit 1;
+fi
 if [ -z "$1" ]; then
     echo " bash copy.sh %1"
     exit 1;
 fi
-
 mkdir /home/DEPO/$1/users
 chown $1:"domain users" /home/DEPO/$1/users
 mkdir /home/DEPO/$1/tmp
