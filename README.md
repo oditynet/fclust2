@@ -1,9 +1,13 @@
-       fclust2 
+fclust2
 ======================
 
-Hello. it is a bash project
+Это bash скрипты созданные упростить процесс миграции пользователей с одной шары в другую.
 
+Prerequisites
+-------------
 
-fclust - это bash скрипты созданные упростить процесс миграции пользователей с одной шары в другую.
+You need [GNU parallel](http://www.gnu.org/software/parallel/) to run this script. On debian/Ubuntu you should be able to install it using:
 
-pam-mount - бесшовное монтирование файлов каталогов по smb протоколу 
+```
+apt-get install parallel rsync libpam-mount
+```
